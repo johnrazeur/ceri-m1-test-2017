@@ -12,14 +12,8 @@ public class IAnimalTest {
         animal = getInstance();
     }
 
-    private IAnimal getInstance() {
-        IAnimal animal = Mockito.mock(IAnimal.class);
-        Mockito.when(animal.getXP()).thenReturn(20);
-        Mockito.when(animal.isSecret()).thenReturn(true);
-        Mockito.when(animal.isEndangered()).thenReturn(true);
-        Mockito.when(animal.isBoss()).thenReturn(false);
-
-        return animal;
+    protected IAnimal getInstance() {
+        return MockFactory.getAnimal();
     }
 
     @Test

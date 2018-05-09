@@ -14,7 +14,7 @@ public class INamedObjectTest {
         namedObject = getInstance();
     }
 
-    private INamedObject getInstance() {
+    protected INamedObject getInstance() {
         INamedObject animal = Mockito.mock(INamedObject.class);
         Mockito.when(animal.getName()).thenReturn("test");
 

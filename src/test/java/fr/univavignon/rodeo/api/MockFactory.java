@@ -38,4 +38,40 @@ public class MockFactory {
         Mockito.when(environment.getSpecies()).thenReturn(species);
         return environment;
     }
+
+    public static IAnimal getAnimal() {
+        IAnimal animal = Mockito.mock(IAnimal.class);
+        Mockito.when(animal.getXP()).thenReturn(20);
+        Mockito.when(animal.isSecret()).thenReturn(true);
+        Mockito.when(animal.isEndangered()).thenReturn(true);
+        Mockito.when(animal.isBoss()).thenReturn(false);
+
+        return animal;
+    }
+
+    public static List<IAnimal> getAnimalList() {
+        IAnimal animal1 = Mockito.mock(IAnimal.class);
+        IAnimal animal2 = Mockito.mock(IAnimal.class);
+        IAnimal animal3 = Mockito.mock(IAnimal.class);
+
+        ArrayList<IAnimal> listAnimal = new ArrayList<>(3);
+        listAnimal.add(animal1);
+        listAnimal.add(animal2);
+        listAnimal.add(animal3);
+        return listAnimal;
+    }
+
+    public static IGameState getGameState() {
+        IAnimal animal = MockFactory.getAnimal();
+        ISpecie spicie = MockFactory.getSpecieInstance();
+
+        IGameState gameState = Mockito.mock(IGameState.class);
+        Mockito.when(gameState.getProgression()).thenReturn(20);
+        Mockito.doThrow(IllegalStateException.class).when(gameState).exploreArea();
+        Mockito.doThrow(IllegalStateException.class).when(gameState).catchAnimal(animal);
+        Mockito.doThrow(IllegalArgumentException.class).when(gameState).catchAnimal(null);
+        Mockito.when(gameState.getSpecieLevel(null)).thenThrow(new IllegalArgumentException());
+        Mockito.when(gameState.getSpecieLevel(spicie)).thenReturn(SpecieLevel.NOVICE);
+        return gameState;
+    }
 }
