@@ -11,16 +11,20 @@ public class IGameStateTest {
     protected IGameState gameState;
 
     protected static IAnimal animal = MockFactory.getAnimal();
-    protected static ISpecie spicie = MockFactory.getSpecieInstance();
+    protected static IAnimal animal2;
+    protected static ISpecie spicie;
     @Before
     public void setUp() {
+        animal2 = getAnimal2();
+        spicie = getSpecie();
         gameState = getInstance();
     }
 
     protected IGameState getInstance() {
         gameState = Mockito.mock(IGameState.class);
         Mockito.when(gameState.getProgression()).thenReturn(20);
-        Mockito.doThrow(IllegalStateException.class).when(gameState).exploreArea();
+        Mockito.doNothing().doNothing().doThrow(IllegalStateException.class).when(gameState).exploreArea();
+        Mockito.doNothing().when(gameState).catchAnimal(animal2);
         Mockito.doThrow(IllegalStateException.class).when(gameState).catchAnimal(animal);
         Mockito.doThrow(IllegalArgumentException.class).when(gameState).catchAnimal(null);
         Mockito.when(gameState.getSpecieLevel(null)).thenThrow(new IllegalArgumentException());
@@ -28,9 +32,31 @@ public class IGameStateTest {
         return gameState;
     }
 
-    @Test(expected=IllegalStateException.class)
+    protected IAnimal getAnimal2() {
+        return MockFactory.getAnimal2();
+    }
+
+    protected ISpecie getSpecie() {
+        return MockFactory.getSpecieInstance();
+    }
+
+    @Test()
     public void testExploreArea()  {
         gameState.exploreArea();
+    }
+
+
+    @Test(expected=IllegalStateException.class)
+    public void testExploreAreaException()  {
+        gameState.exploreArea();
+        gameState.exploreArea();
+        gameState.exploreArea();
+    }
+
+    @Test()
+    public void testCatchAnimal() {
+        gameState.exploreArea();
+        gameState.catchAnimal(animal2);
     }
 
     @Test(expected=IllegalStateException.class)

@@ -39,6 +39,29 @@ public class MockFactory {
         return environment;
     }
 
+    public static List<IEnvironment> getEnvironmentList() {
+        IEnvironment environment1 = Mockito.mock(IEnvironment.class);
+        Mockito.when(environment1.getAreas()).thenReturn(0);
+        List<ISpecie> species = getSpecieList();
+        Mockito.when(environment1.getSpecies()).thenReturn(species);
+
+        IEnvironment environment2 = Mockito.mock(IEnvironment.class);
+        Mockito.when(environment2.getAreas()).thenReturn(10);
+        Mockito.when(environment2.getSpecies()).thenReturn(species);
+
+        IEnvironment environment3 = Mockito.mock(IEnvironment.class);
+        Mockito.when(environment3.getAreas()).thenReturn(10);
+        Mockito.when(environment3.getSpecies()).thenReturn(species);
+
+        ArrayList<IEnvironment> listEnvironment = new ArrayList<>(3);
+
+        listEnvironment.add(environment1);
+        listEnvironment.add(environment2);
+        listEnvironment.add(environment3);
+
+        return listEnvironment;
+    }
+
     public static IAnimal getAnimal() {
         IAnimal animal = Mockito.mock(IAnimal.class);
         Mockito.when(animal.getXP()).thenReturn(20);
@@ -48,6 +71,17 @@ public class MockFactory {
 
         return animal;
     }
+
+    public static IAnimal getAnimal2() {
+        IAnimal animal = Mockito.mock(IAnimal.class);
+        Mockito.when(animal.getXP()).thenReturn(40);
+        Mockito.when(animal.isSecret()).thenReturn(true);
+        Mockito.when(animal.isEndangered()).thenReturn(true);
+        Mockito.when(animal.isBoss()).thenReturn(false);
+
+        return animal;
+    }
+
 
     public static List<IAnimal> getAnimalList() {
         IAnimal animal1 = Mockito.mock(IAnimal.class);
