@@ -1,7 +1,6 @@
 package fr.univavignon.rodeo.api;
 
 import org.junit.*;
-import org.mockito.Mockito;
 import static org.junit.Assert.*;
 
 public class IAnimalTest {

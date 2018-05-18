@@ -9,7 +9,6 @@ public class GameStateTest extends IGameStateTest {
     @Override
     protected IGameState getInstance() {
         List<IAnimal> cats = Arrays.asList(new Animal("cat", true, true, false, 20));
-        List<IAnimal> dogs = Arrays.asList(animal2);
         List<IAnimal> lions = Arrays.asList(new Animal("lion", true, true, false, 20));
         List<ISpecie> species = Arrays.asList(
                 getSpecie(),

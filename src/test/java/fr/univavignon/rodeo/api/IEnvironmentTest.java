@@ -2,10 +2,8 @@ package fr.univavignon.rodeo.api;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -13,7 +11,6 @@ import static org.junit.Assert.*;
 
 public class IEnvironmentTest {
     protected IEnvironment environment;
-    protected static ISpecie specie;
 
     @Before
     public void setUp() {
@@ -43,11 +40,4 @@ public class IEnvironmentTest {
     public void testGetName() {
         assertEquals("environmentTest", environment.getName());
     }
-
-//    private ISpecie getInstanceSpecie() {
-//        ISpecie animal = Mockito.mock(ISpecie.class);
-//        Mockito.when(animal.getAreas()).thenReturn(20);
-//
-//        return animal;
-//    }
 }
