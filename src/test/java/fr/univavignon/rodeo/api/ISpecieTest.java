@@ -22,6 +22,7 @@ public class ISpecieTest {
         List<IAnimal> listAnimal = MockFactory.getAnimalList();
         Mockito.when(specie.getArea()).thenReturn(20);
         Mockito.when(specie.getAnimals()).thenReturn(listAnimal);
+        Mockito.when(specie.getName()).thenReturn("specieTest");
         return specie;
     }
 
@@ -33,5 +34,10 @@ public class ISpecieTest {
     @Test
     public void testGetAnimals() {
         assertEquals(3, specie.getAnimals().size());
+    }
+
+    @Test
+    public void testGetName() {
+        assertEquals("specieTest", specie.getName());
     }
 }

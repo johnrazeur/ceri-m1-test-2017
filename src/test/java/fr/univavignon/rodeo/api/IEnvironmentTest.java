@@ -25,6 +25,7 @@ public class IEnvironmentTest {
         Mockito.when(environment.getAreas()).thenReturn(20);
         List<ISpecie> species = MockFactory.getSpecieList();
         Mockito.when(environment.getSpecies()).thenReturn(species);
+        Mockito.when(environment.getName()).thenReturn("environmentTest");
         return environment;
     }
 
@@ -36,6 +37,11 @@ public class IEnvironmentTest {
     @Test
     public void testGetSpecies() {
         assertEquals(3, environment.getSpecies().size());
+    }
+
+    @Test
+    public void testGetName() {
+        assertEquals("environmentTest", environment.getName());
     }
 
 //    private ISpecie getInstanceSpecie() {

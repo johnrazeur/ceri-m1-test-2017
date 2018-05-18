@@ -24,6 +24,12 @@ public class EnvironmentProvider implements IEnvironmentProvider {
         if (name == null) {
             throw new IllegalArgumentException();
         }
-        return environment;
+
+        for (String env : availableEnvironments) {
+            if (name.equals(env)) {
+                return environment;
+            }
+        }
+        return null;
     }
 }

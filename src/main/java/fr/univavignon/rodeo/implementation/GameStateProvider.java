@@ -12,7 +12,7 @@ public class GameStateProvider implements IGameStateProvider {
 
     @Override
     public void save(IGameState gameState) {
-
+        System.out.println("sauvegarde");
     }
 
     @Override

@@ -29,6 +29,7 @@ public class IGameStateTest {
         Mockito.doThrow(IllegalArgumentException.class).when(gameState).catchAnimal(null);
         Mockito.when(gameState.getSpecieLevel(null)).thenThrow(new IllegalArgumentException());
         Mockito.when(gameState.getSpecieLevel(spicie)).thenReturn(SpecieLevel.NOVICE);
+        Mockito.when(gameState.getName()).thenReturn("gameStateTest");
         return gameState;
     }
 
@@ -60,7 +61,13 @@ public class IGameStateTest {
     }
 
     @Test(expected=IllegalStateException.class)
+    public void testCatchAnimalWrongAnimalNotExplore() {
+        gameState.catchAnimal(animal);
+    }
+
+    @Test(expected=IllegalStateException.class)
     public void testCatchAnimalWrongAnimal() {
+        gameState.exploreArea();
         gameState.catchAnimal(animal);
     }
 
@@ -76,7 +83,9 @@ public class IGameStateTest {
 
     @Test()
     public void testGetSpecieLevelNovice() {
-        assertEquals(SpecieLevel.NOVICE, gameState.getSpecieLevel(spicie));
+        SpecieLevel specieLevel = gameState.getSpecieLevel(spicie);
+        assertEquals(SpecieLevel.NOVICE, specieLevel);
+        assertEquals(SpecieLevel.NOVICE.getRequiredXP(), specieLevel.getRequiredXP());
     }
 
     @Test
@@ -84,4 +93,8 @@ public class IGameStateTest {
         assertEquals(20, gameState.getProgression());
     }
 
+    @Test
+    public void testGetName() {
+        assertEquals("gameStateTest", gameState.getName());
+    }
 }

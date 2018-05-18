@@ -12,11 +12,11 @@ public class IEnvironmentProviderTest {
 
     @Before
     public void setUp() {
-         getInstance();
+         environmentProvider = getInstance();
     }
 
-    protected void getInstance() {
-        environmentProvider = Mockito.mock(IEnvironmentProvider.class);
+    protected IEnvironmentProvider getInstance() {
+        IEnvironmentProvider environmentProvider = Mockito.mock(IEnvironmentProvider.class);
         ArrayList<String> environments = new ArrayList<>(3);
         environments.add("savana");
         environments.add("desert");
@@ -27,6 +27,7 @@ public class IEnvironmentProviderTest {
         Mockito.when(environmentProvider.getEnvironment("savana")).thenReturn(environment);
         Mockito.when(environmentProvider.getEnvironment("vide")).thenReturn(null);
         Mockito.when(environmentProvider.getEnvironment(null)).thenThrow(new IllegalArgumentException());
+        return environmentProvider;
     }
 
     @Test
